@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { EbayPricingResult, EbaySoldListing, EbayPricingSummary } from "@/types/ebay";
 import { formatCurrency, median } from "@/lib/utils";
 import Badge from "./Badge";
+import ProfitCalculator from "./ProfitCalculator";
 
 interface PricingSectionProps {
   pricing: EbayPricingResult;
@@ -149,6 +150,8 @@ export default function PricingSection({ pricing, retailPrice }: PricingSectionP
                 </Badge>
               )}
             </div>
+
+            <ProfitCalculator medianPrice={summary.medianPrice} retailPrice={retailPrice} />
           </>
         )}
       </div>
