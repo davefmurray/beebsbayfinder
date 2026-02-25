@@ -18,6 +18,7 @@ export interface LegoSetDetails {
   ageRange: string | null;
   barcode: string | null;
   rating: number | null;
+  retired: boolean | null;
 }
 
 export interface BricksetApiResponse {

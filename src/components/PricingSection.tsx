@@ -45,7 +45,7 @@ function computeFilteredSummary(listings: EbaySoldListing[]): EbayPricingSummary
 }
 
 export default function PricingSection({ pricing, retailPrice }: PricingSectionProps) {
-  const [dateRange, setDateRange] = useState<DateRange>("all");
+  const [dateRange, setDateRange] = useState<DateRange>("15");
   const [condition, setCondition] = useState<Condition>("all");
 
   const filtered = useMemo(() => {

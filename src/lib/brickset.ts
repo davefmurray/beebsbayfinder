@@ -65,6 +65,11 @@ export async function getLegoSetDetails(
     barcode:
       set.barcode?.UPC || set.barcode?.EAN || null,
     rating: set.rating || null,
+    retired: (() => {
+      const dateStr = set.LEGOCom?.US?.dateLastAvailable || set.LEGOCom?.UK?.dateLastAvailable;
+      if (!dateStr) return null;
+      return new Date(dateStr) < new Date();
+    })(),
   };
 
   setCache(cacheKey, result, TTL.LEGO);

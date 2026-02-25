@@ -25,6 +25,11 @@ export default function SetDetailsCard({ set }: SetDetailsCardProps) {
             <Badge variant="default">{set.theme}</Badge>
             {set.subtheme && <Badge variant="default">{set.subtheme}</Badge>}
             <Badge variant="default">{set.year}</Badge>
+            {set.retired !== null && (
+              <Badge variant={set.retired ? "red" : "green"}>
+                {set.retired ? "Retired" : "Available"}
+              </Badge>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
