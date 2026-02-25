@@ -46,11 +46,11 @@ export default function SetDetailsCard({ set }: SetDetailsCardProps) {
             {set.dimensions && (
               <Detail
                 label="Box Size"
-                value={`${set.dimensions.height} x ${set.dimensions.width} x ${set.dimensions.depth} cm`}
+                value={`${cmToIn(set.dimensions.height)} x ${cmToIn(set.dimensions.width)} x ${cmToIn(set.dimensions.depth)} in`}
               />
             )}
             {set.weight != null && (
-              <Detail label="Weight" value={`${set.weight} kg`} />
+              <Detail label="Weight" value={`${kgToLbs(set.weight)} lbs`} />
             )}
             {set.ageRange && <Detail label="Ages" value={set.ageRange} />}
             {set.barcode && <Detail label="UPC/EAN" value={set.barcode} />}
@@ -73,6 +73,15 @@ export default function SetDetailsCard({ set }: SetDetailsCardProps) {
       </div>
     </div>
   );
+}
+
+function cmToIn(cm: number | null): string {
+  if (cm == null) return "?";
+  return (cm / 2.54).toFixed(1);
+}
+
+function kgToLbs(kg: number): string {
+  return (kg * 2.20462).toFixed(1);
 }
 
 function Detail({ label, value }: { label: string; value: string }) {
