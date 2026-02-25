@@ -28,10 +28,15 @@ export interface EbayPricingResult {
 export interface ApifyEbayItem {
   title?: string;
   price?: string | number;
+  soldPrice?: string | number;
   shipping?: string | number;
+  shippingPrice?: string | number;
   currency?: string;
+  soldCurrency?: string;
   date?: string;
+  endedAt?: string;
   url?: string;
   itemId?: string;
+  totalPrice?: string | number;
   [key: string]: unknown;
 }

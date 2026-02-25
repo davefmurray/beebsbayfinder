@@ -55,20 +55,20 @@ export async function getEbaySoldListings(
 function normalizeListings(items: ApifyEbayItem[]): EbaySoldListing[] {
   return items
     .map((item) => {
-      const price = parsePrice(item.price);
+      const price = parsePrice(item.soldPrice ?? item.price);
       if (price === null) return null;
 
-      const shipping = parsePrice(item.shipping);
+      const shipping = parsePrice(item.shippingPrice ?? item.shipping);
 
       return {
-        title: item.title || "Untitled",
+        title: (item.title as string) || "Untitled",
         price,
         shipping,
         totalPrice: price + (shipping ?? 0),
-        date: item.date || "",
-        url: item.url || "",
-        itemId: item.itemId || null,
-        currency: item.currency || "USD",
+        date: (item.endedAt ?? item.date ?? "") as string,
+        url: (item.url as string) || "",
+        itemId: (item.itemId as string) || null,
+        currency: (item.soldCurrency ?? item.currency ?? "USD") as string,
       };
     })
     .filter((item): item is EbaySoldListing => item !== null);

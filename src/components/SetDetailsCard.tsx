@@ -28,16 +28,16 @@ export default function SetDetailsCard({ set }: SetDetailsCardProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-            {set.pieces !== null && (
+            {set.pieces != null && (
               <Detail label="Pieces" value={set.pieces.toLocaleString()} />
             )}
-            {set.minifigs !== null && (
+            {set.minifigs != null && (
               <Detail
                 label="Minifigs"
                 value={set.minifigs.toString()}
               />
             )}
-            {set.retailPrice !== null && (
+            {set.retailPrice != null && (
               <Detail
                 label="Retail Price"
                 value={formatCurrency(set.retailPrice)}
@@ -49,12 +49,12 @@ export default function SetDetailsCard({ set }: SetDetailsCardProps) {
                 value={`${set.dimensions.height} x ${set.dimensions.width} x ${set.dimensions.depth} cm`}
               />
             )}
-            {set.weight !== null && (
+            {set.weight != null && (
               <Detail label="Weight" value={`${set.weight} kg`} />
             )}
             {set.ageRange && <Detail label="Ages" value={set.ageRange} />}
             {set.barcode && <Detail label="UPC/EAN" value={set.barcode} />}
-            {set.rating !== null && (
+            {set.rating != null && (
               <Detail label="Rating" value={`${set.rating}/5`} />
             )}
           </div>
