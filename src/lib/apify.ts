@@ -26,7 +26,7 @@ export async function getEbaySoldListings(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       keyword,
-      maxItems: 30,
+      maxItems: 50,
     }),
   });
 
@@ -40,6 +40,7 @@ export async function getEbaySoldListings(
   const items: ApifyEbayItem[] = await response.json();
   const listings = normalizeListings(items);
   const filtered = filterListings(listings, retailPrice ?? null);
+  filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const summary = computeSummary(filtered);
 
   const result: EbayPricingResult = {
@@ -85,7 +86,7 @@ function filterListings(
   });
 }
 
-function computeSummary(listings: EbaySoldListing[]) {
+export function computeSummary(listings: EbaySoldListing[]) {
   if (listings.length === 0) {
     return {
       count: 0,
